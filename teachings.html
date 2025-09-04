@@ -112,6 +112,20 @@ td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-rig
 <style>
 #layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
 </style>
+<style>
+/* INLINE FALLBACK (kept small) */
+#toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+#layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
+#layout-menu .menu-item a, #layout-menu a { display:block !important; box-sizing:border-box !important; width:100% !important;
+  background:#fff !important; color:#111 !important; border:1px solid #000 !important; border-radius:4px !important;
+  padding:6px 10px !important; margin:8px 0 !important; text-decoration:none !important; }
+.season-switch, .quick-actions { position: fixed; z-index: 9999; display:flex; gap:6px; padding:6px; border-radius:10px;
+  background: rgba(0,0,0,.05); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); font: 12px/1.6 ui-monospace, Menlo, Consolas, monospace; }
+.season-switch { right:12px; bottom:12px; } .quick-actions{ right:12px; top:12px; }
+.season-switch button, .quick-actions button, .quick-actions a { border:1px solid rgba(0,0,0,.15); padding:3px 8px; border-radius:8px; background:#fff; color:#111; text-decoration:none; cursor:pointer; }
+#season-switch button[data-season="normal"]{ background:transparent !important; border-color: rgba(0,0,0,.2) !important; color:#3A6EA5 !important; }
+</style>
 </head>
 <body>
 <table summary="Table for page layout." id="tlayout">
@@ -226,5 +240,64 @@ td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-rig
 })();
 </script>
 <script src="season.js"></script>
+<script>/* INLINE FALLBACK JS */
+
+(function(){
+  function setPressed(mode){
+    var buttons = document.querySelectorAll('#season-switch button[data-season]');
+    for (var i=0; i<buttons.length; i++){
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season')===mode));
+    }
+  }
+  function applySeason(mode){
+    var root = document.documentElement;
+    root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
+    if (mode === 'normal') root.classList.add('mode-normal'); else root.classList.add('season-' + mode);
+    try { localStorage.setItem('seasonMode', mode); } catch(e){}
+    setPressed(mode);
+  }
+  function initialMode(){
+    var m = (''+location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
+    if (m) { try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){} return m[1].toLowerCase(); }
+    try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
+  }
+  function ensureToolbars(){
+    if (!document.querySelector('.quick-actions')){
+      var qa = document.createElement('div'); qa.className='quick-actions'; qa.setAttribute('role','toolbar');
+      qa.innerHTML = '<button type="button" data-copy="nabarun.deb@chicagobooth.edu">Copy Email</button> '
+                   + '<a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&hl=en" target="_blank" rel="noopener" role="button">Open Scholar</a>';
+      document.body.appendChild(qa);
+    }
+    if (!document.getElementById('season-switch')){
+      var sw = document.createElement('div'); sw.className='season-switch'; sw.id='season-switch'; sw.setAttribute('role','toolbar');
+      sw.innerHTML = '<button type="button" data-season="normal" aria-pressed="true">Normal</button> '
+                   + '<button type="button" data-season="spring">Spring</button> '
+                   + '<button type="button" data-season="summer">Summer</button> '
+                   + '<button type="button" data-season="autumn">Autumn</button> '
+                   + '<button type="button" data-season="winter">Winter</button>';
+      document.body.appendChild(sw);
+    }
+  }
+  function wire(){
+    ensureToolbars();
+    var toolbar = document.getElementById('season-switch');
+    if (toolbar){
+      toolbar.addEventListener('click', function(e){
+        var btn = e.target.closest && e.target.closest('button[data-season]');
+        if (!btn) return; applySeason(btn.getAttribute('data-season'));
+      }, false);
+    }
+    document.addEventListener('click', async function(e){
+      var btn = e.target.closest && e.target.closest('button[data-copy]'); if (!btn) return;
+      var text = btn.getAttribute('data-copy'); var label = btn.textContent;
+      try { await navigator.clipboard.writeText(text); btn.textContent='Copied!'; setTimeout(()=>btn.textContent=label,1200); }
+      catch(err){ btn.textContent='Press Ctrl/⌘+C'; setTimeout(()=>btn.textContent=label,1500); }
+    }, false);
+    applySeason(initialMode());
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire, {once:true}); else wire();
+})();
+
+</script>
 </body>
 <script>if(window.parent==window){(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-41540427-2","auto",{"siteSpeedSampleRate":100});ga("send","pageview");}</script></HTML>
