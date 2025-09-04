@@ -1,487 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><title>Nabarun Deb — Publications</title><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="jemdoc.css" rel="stylesheet" type="text/css"/><style>
+  :root { --pane-bg: rgba(255,255,255,0.40); --border: rgba(0,0,0,.22); }
+  html, body { height:100%; margin:0; font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; color:#111; }
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title></title>
-<meta name="theme-color" content="#ffffff" />
-<style type="text/css">
-  /* Base tokens */
-  :root {
-    --bg:#ffffff; --fg:#111111; --link:#0645ad; --muted:#666666; --accent:#0b62d6;
-    --divider: rgba(0,0,0,.2);
-    --bg1:#ffffff; --bg2:#ffffff; --spot1:transparent; --spot2:transparent;
+  /* Layout: left panel + content */
+  .page{
+    display:grid; grid-template-columns: 240px 1fr; gap: 22px; align-items:start;
+    max-width: 1200px; margin: 20px auto; padding: 0 16px;
   }
-  /* Seasonal overrides */
-  :root.season-spring {
-    --bg:#f0fff5; --fg:#101010; --link:#1b7a59; --muted:#5a5a5a; --accent:#28a66a;
-    --bg1:#f0fff5; --bg2:#d7fbeb; --spot1:rgba(146,227,169,.25); --spot2:rgba(102,191,131,.15);
-    --divider: rgba(27,122,89,.35);
-  }
-  :root.season-summer {
-    --bg:#fff5d6; --fg:#101010; --link:#185bb8; --muted:#5a5a5a; --accent:#e59f1a;
-    --bg1:#fff5d6; --bg2:#ffe7a8; --spot1:rgba(255,179,71,.25); --spot2:rgba(255,140,0,.12);
-    --divider: rgba(229,159,26,.40);
-  }
-  :root.season-autumn {
-    --bg:#fff0e6; --fg:#111111; --link:#0a58ca; --muted:#5a5a5a; --accent:#c45a12;
-    --bg1:#fff0e6; --bg2:#ffd6bd; --spot1:rgba(218,112,56,.22); --spot2:rgba(160,78,18,.12);
-    --divider: rgba(196,90,18,.45);
-  }
-  :root.season-winter {
-    --bg:#f6fbff; --fg:#0e2235; --link:#185bb8; --muted:#51708d; --accent:#7ec8ff;
-    --bg1:#fafeff; --bg2:#ebf6ff; --spot1:rgba(120,180,220,.18); --spot2:rgba(180,220,255,.12);
-    --divider: rgba(10,50,90,.15);
-  }
-  /* Apply tokens */
-  html, body {
-    background: var(--bg) !important;
-    color: var(--fg) !important;
-    transition: background .25s ease, color .25s ease;
-    background-image:
-      radial-gradient(900px 520px at 10% -10%, var(--spot1), transparent 60%),
-      radial-gradient(780px 420px at 90% 110%, var(--spot2), transparent 60%),
-      linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
-    background-attachment: fixed, fixed, fixed;
-    background-repeat: no-repeat;
-  }
-  a { color: var(--link); }
+  @media (max-width: 900px){ .page{ grid-template-columns: 1fr; } }
 
-  /* Seasonal watermarks */
-  body::before, body::after {
-    content: ""; position: fixed; z-index: 0; pointer-events: none;
-    width: 140px; height: 140px; background-repeat: no-repeat; background-size: 100% 100%;
-    opacity: .04;
+  /* Left panel with bordered “buttons” */
+  .sidebar { border-right: 1px solid var(--border); padding-right: 16px; }
+  .menu { list-style:none; margin:0; padding:0; }
+  .menu li { margin:8px 0; }
+  .menu a{
+    display:block; box-sizing:border-box; width:100%;
+    background:#fff; color:#111; border:1px solid #000; border-radius:4px;
+    padding:8px 10px; text-decoration:none;
   }
-  body::before { top: 8px; left: 8px; }
-  body::after  { bottom: 8px; right: 8px; }
-  :root.season-spring body::before, :root.season-spring body::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><g fill=%22%231b7a59%22 fill-opacity=%22.25%22><circle cx=%2232%22 cy=%2220%22 r=%226%22/><circle cx=%2245%22 cy=%2227%22 r=%226%22/><circle cx=%2219%22 cy=%2227%22 r=%226%22/><circle cx=%2224%22 cy=%2242%22 r=%226%22/><circle cx=%2240%22 cy=%2242%22 r=%226%22/><circle cx=%2232%22 cy=%2232%22 r=%2210%22/></g></svg>'); }
-  :root.season-summer body::before, :root.season-summer body::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><g fill=%22%23e59f1a%22 fill-opacity=%22.22%22><circle cx=%2232%22 cy=%2232%22 r=%2210%22/><g stroke=%22%23e59f1a%22 stroke-opacity=%22.18%22 stroke-width=%224%22><line x1=%2232%22 y1=%224%22 x2=%2232%22 y2=%2216%22/><line x1=%2232%22 y1=%2248%22 x2=%2232%22 y2=%2260%22/><line x1=%224%22 y1=%2232%22 x2=%2216%22 y2=%2232%22/><line x1=%2248%22 y1=%2232%22 x2=%2260%22 y2=%2232%22/><line x1=%2212%22 y1=%2212%22 x2=%2220%22 y2=%2220%22/><line x1=%2244%22 y1=%2244%22 x2=%2252%22 y2=%2252%22/><line x1=%2244%22 y1=%2220%22 x2=%2252%22 y2=%2212%22/><line x1=%2212%22 y1=%2252%22 x2=%2220%22 y2=%2244%22/></g></g></svg>'); }
-  :root.season-autumn body::before, :root.season-autumn body::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><path d=%22M10,54 C30,50 34,40 50,14 C40,14 26,16 16,24 C6,32 8,44 10,54 Z%22 fill=%22%23c45a12%22 fill-opacity=%22.18%22/></svg>'); }
-  :root.season-winter body::before, :root.season-winter body::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><g stroke=%22%23b8ddff%22 stroke-opacity=%22.22%22 stroke-width=%223%22 stroke-linecap=%22round%22><line x1=%2232%22 y1=%228%22 x2=%2232%22 y2=%2256%22/><line x1=%228%22 y1=%2232%22 x2=%2256%22 y2=%2232%22/><line x1=%2214%22 y1=%2214%22 x2=%2250%22 y2=%2250%22/><line x1=%2250%22 y1=%2214%22 x2=%2214%22 y2=%2250%22/></g></svg>'); }
+  .menu a.current{ background:#111; color:#fff; }
 
-  /* Menu & layout parity */
-  td#layout-menu { border-right: 1px solid var(--divider); padding-right: 16px; }
-  #layout-menu .menu-item a, #layout-menu a {
-    display:block; background:#fff; color:#111 !important;
-    border:1px solid #000; border-radius:4px;
-    padding:6px 10px; margin:8px 0; text-decoration:none;
+  /* Content pane more transparent so bg shows through */
+  .content{
+    background: var(--pane-bg); border-radius: 10px; padding: 18px 20px;
+    position: relative; z-index: 1;
   }
-  #layout-menu .menu-category { margin: 6px 0 8px 0; font-weight: bold; color: #111 !important; }
-  td#layout-content { padding-left: 14px; }
 
-  /* Floating controls */
-  .season-switch, .quick-actions {
-    position: fixed; z-index: 9999;
-    display: flex; gap: 6px; padding: 6px 6px; border-radius: 10px;
-    background: rgba(0,0,0,.05); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  /* Name + photo + contact block */
+  h1{ margin:0 0 6px 0; font-size: 2rem; }
+  .profile-row{
+    display:flex; align-items:flex-start; gap:18px;
+    margin:2px 0 12px 0;
+  }
+  .headshot{
+    width:200px; height:auto; display:block;
+    border-radius:8px; border:1px solid rgba(0,0,0,.2);
+  }
+  .contact-block p{ margin:0 0 6px 0; }
+  .subtle{ color:#333; }
+
+  @media (max-width: 800px){
+    .profile-row{ flex-direction:column; gap:8px; }
+    .headshot{ width:200px; }
+  }
+
+  /* Floating toolbars */
+  .season-switch, .quick-actions{
+    position: fixed; z-index: 9999; display:flex; gap:6px;
+    padding:6px; border-radius:10px; background: rgba(0,0,0,.05);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
     font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   }
   .season-switch { right: 12px; bottom: 12px; }
-  .quick-actions { left: 12px; bottom: 12px; }
-
-  .season-switch button, .quick-actions button, .quick-actions a {
-    border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background: #fff; cursor: pointer;
-    text-decoration: none;
+  .quick-actions { right: 12px; top: 12px; }
+  .season-switch button, .quick-actions button, .quick-actions a{
+    border: 1px solid rgba(0,0,0,.15); padding:3px 8px; border-radius:8px; background:#fff; color:#111; text-decoration:none; cursor:pointer;
   }
-  /* Keep buttons white in Winter as well */
+  .season-switch button[aria-pressed="true"]{ outline:2px solid currentColor; }
+
+  /* Keep content above background image (if any legacy CSS exists elsewhere) */
+  #toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+
+  /* Normal (no photo) */
+  :root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
+
+  /* Seasonal backgrounds (expects images in site root) */
+  :root.season-spring body{
+    background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important;
+    background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
+  }
+  :root.season-summer body{
+    background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important;
+    background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
+  }
+  :root.season-autumn body{
+    background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important;
+    background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
+  }
+  :root.season-winter body{
+    background-image: linear-gradient(rgba(240,247,255,0.70), rgba(240,247,255,0.70)), url('winter.jpg') !important;
+    background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
+  }
+  /* Winter buttons stay white */
   :root.season-winter .season-switch button,
   :root.season-winter .quick-actions button,
-  :root.season-winter .quick-actions a { background: #fff; color: inherit; border-color: rgba(0,0,0,.15); }
+  :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
 
-  .season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
-
-  /* Keep content above watermarks & toolbars */
-  #layout-content, #layout-menu, #toptitle { position: relative; z-index: 1; }
-  #layout-content { padding-bottom: 96px; }
-
-/* Left-flush publication layout */
-.publist.flush { list-style: none; margin: 0; padding: 0; }
-.pubitem { margin: 0 0 .85em 0; }
-.pub-title { margin: 0; }
-.pub-title a { text-decoration: none; }
-.pub-title a:hover { text-decoration: underline; }
-.pub-meta { margin-top: 2px; color: var(--muted); font-size: 95%; }
-</style>
-
-
-<style type="text/css">
-  .publist { list-style: disc outside; margin: 0 0 1.2em 1.25em; padding: 0; }
-  .publist > li { margin: 0 0 .6em 0; }
-  .publist > li > p { margin: 0; }
-  .pubmeta { list-style: none; margin: .25em 0 0 0; padding: 0; }
-  .pubmeta li { margin: 0; }
-</style>
-
-<style>
-/* --- Match index: quick actions top-right; season switch bottom-right --- */
-.quick-actions { right: 12px !important; top: 12px !important; left: auto !important; bottom: auto !important; position: fixed !important; z-index: 9999; }
-.season-switch { right: 12px !important; bottom: 12px !important; left: auto !important; top: auto !important; position: fixed !important; z-index: 9999; }
-
-/* Normal (no seasonal background) via root tokens */
-:root.mode-normal {
-  --bg:#FAF7F0; --fg:#111111; --link:#0645ad; --muted:#666666; --accent:#0b62d6;
-  --bg1:#FAF7F0; --bg2:#FAF7F0; --spot1:transparent; --spot2:transparent;
-  --divider: rgba(0,0,0,.2);
-}
-/* Winter buttons stay white (parity with index) */
-:root.season-winter .season-switch button,
-:root.season-winter .quick-actions button,
-:root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
-</style>
-
-<style>
-/* === Match index (v8): colors & images EXACTLY === */
-
-/* Quick actions at top-right; season switcher bottom-right */
-.quick-actions { position: fixed !important; right: 12px !important; top: 12px !important; left: auto !important; bottom: auto !important; z-index: 9999 !important; }
-.season-switch { position: fixed !important; right: 12px !important; bottom: 12px !important; left: auto !important; top: auto !important; z-index: 9999 !important; }
-
-/* Ensure content above background */
-#layout-content, #layout-menu, #toptitle { position: relative; z-index: 1; }
-
-/* Normal (no photo) */
-:root.mode-normal body {
-  background: #FAF7F0 !important;
-  background-image: none !important;
-}
-
-/* Avoid any old scenic layers from interfering */
-:root.season-spring #season-bg,
-:root.season-summer #season-bg,
-:root.season-autumn #season-bg,
-:root.season-winter #season-bg { background-image: none !important; }
-
-/* Seasonal photos — same overlays as index v8 (strong visibility) */
-:root.season-spring body {
-  background-image:
-    linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)),
-    url('spring.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-}
-:root.season-summer body {
-  background-image:
-    linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)),
-    url('summer.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-}
-:root.season-autumn body {
-  background-image:
-    linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)),
-    url('autumn.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-}
-:root.season-winter body {
-  background-image:
-    linear-gradient(rgba(240,247,255,0.72), rgba(240,247,255,0.72)),
-    url('winter.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-}
-
-/* Keep buttons white in Winter (parity with index) */
-:root.season-winter .season-switch button,
-:root.season-winter .quick-actions button,
-:root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
-
-/* Normal button: text-only look */
-#season-switch button[data-season="normal"] {
-  background: transparent !important;
-  border-color: rgba(0,0,0,.2) !important;
-  color: #3A6EA5 !important;
-}
-</style>
-
-<style>
-/* Ensure toolbar containers exist and are visible */
-.season-switch, .quick-actions { position: fixed; z-index: 9999; display: flex; gap: 6px; }
-.season-switch { right: 12px; bottom: 12px; }
-.quick-actions { right: 12px; top: 12px; }
-.season-switch button { cursor: pointer; }
-</style>
-  <link rel="stylesheet" href="season.css?v=3">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-#layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
-</style>
-<style type="text/css">
-#toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
-#layout-content, td#layout-content { background: rgba(255,255,255,0.56) !important; border-radius: 10px; }
-td#layout-menu { border-right: 1px solid rgba(0,0,0,.22); padding-right: 16px; }
-#layout-menu .menu-item a, #layout-menu a {
-  display:block; box-sizing:border-box; width:100%;
-  background:#fff; color:#111; border:1px solid #000; border-radius:4px;
-  padding:8px 10px; margin:8px 0; text-decoration:none;
-}
-.season-switch, .quick-actions {
-  position: fixed; z-index: 9999; display:flex; gap:6px;
-  padding:6px; border-radius:10px; background: rgba(0,0,0,.05);
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
-  font: 12px/1.6 ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
-}
-.season-switch { right: 12px; bottom: 12px; }
-.quick-actions { right: 12px; top: 12px; }
-.season-switch button, .quick-actions button, .quick-actions a {
-  border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background:#fff; color:#111; text-decoration:none; cursor:pointer;
-}
-.season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
-:root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
-:root.season-spring body { background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
-:root.season-summer body { background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
-:root.season-autumn body { background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
-:root.season-winter body { background-image: linear-gradient(rgba(240,247,255,0.70), rgba(240,247,255,0.70)), url('winter.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
-:root.season-winter .season-switch button, :root.season-winter .quick-actions button, :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
-#season-switch button[data-season="normal"]{ background:transparent !important; border-color:rgba(0,0,0,.2) !important; color:#3A6EA5 !important; }
-</style>
-
-</head>
-<body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-<td id="layout-menu">
-<div class="menu-category">Home</div>
-<div class="menu-item"><a href="index.html">Bio</a></div>
-<div class="menu-item"><a href="publications.html" class="current">Research</a></div>
-<div class="menu-item"><a href="teachings.html">Teaching</a></div>
-<div class="menu-item"><a href="CV.pdf">CV</a></div>
-<!--<div class="menu-item"><a href="experience.html">Experience</a></div>-->
-<!--<div class="menu-item"><a href="fun.html">Misc.</a></div>-->
-</td>
-<td id="layout-content">
-<h1>Publications</h1>
-<h2>Accepted manuscripts</h2>
-<ul class="publist flush">
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2411.13080">Distribution-free Measures of Association based on Optimal Transport </a> ("Accepted" at the <i> Indian Journal of Pure Applied Math </i>, special issue in honor of Prof. K. R. Parthasarathy). </li <ul <li><p><strong><i>Nabarun Deb</strong></i>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2307.16421.pdf">Wasserstein Mirror Gradient Flow as the Limit of the Sinkhorn Algorithm</a> ("Accepted" at the <i> Annals of Probability </i>). </li <ul <li><p><strong><i>Nabarun Deb</i></strong>, <i>Young-Heon Kim</i>, <i>Soumik Pal</i>, <i> Geoffrey Schiebinger</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2212.03944.pdf">LDP for Inhomogeneous U-Statistics</a> ("Accepted" at the <i>Annals of Applied Probability</i>). </li <ul <li><p><i>Sohom Bhattacharya</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2107.01718.pdf">Rates of Estimation of Optimal Transport Maps using Plug-in Estimators via Barycentric Projections</a> ("Accepted" at <i> Neural Information Processing Systems (NeurIPS) 2021<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.15140.pdf">Exact Detection Thresholds for Chatterjee’s Correlation</a> ("Accepted" at <i> Bernoulli</i>). </li <ul <li><p><i>Arnab Auddy</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sagnik Nandy</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.01986.pdf">Pitman Efficiency Lower Bounds for Multivariate Distribution-Free Tests Based on Optimal Transport</a>. ("Accepted" at the <i>Journal of the Royal Statistical Society: Series B</i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Bhaswar B. Bhattacharya</i>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.14804.pdf">Kernel Partial Correlation Coefficient -- a Measure of Conditional Dependence</a> ("Accepted" at <i> Journal of Machine Learning Research (JMLR) </i>). <a href="https://cran.r-project.org/web/packages/KPC/index.html" style="color:#FF0000;">R package (CRAN).</a> </li <ul <li><p><i>Zhen Huang</i>, <strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.05784.pdf">Detecting Structured Signals in Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Rajarshi Mukherjee</i>, <i>Sumit Mukherjee</i>, <i>Ming Yuan</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2005.00710.pdf">Fluctuations in Mean-Field Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1909.08733.pdf">Multivariate Rank-based Distribution-free Nonparametric Testing using Measure Transportation</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://github.com/NabarunD/MultiDistFree" style="color:#FF0000;">Associated R codes (GitHub).</a> </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1810.07897.pdf">Two-component Mixture Model in the Presence of Covariates</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://cran.r-project.org/web/packages/NPMLEmix/index.html" style="color:#FF0000;">R package (CRAN).</a> </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Sujayam Saha</i>, <i></i>Adityanand Guntuboyina</i>, </i> <i>Bodhisattva Sen</i>.</div></li>
+  /* Make “Normal” look like a linky button */
+  #season-switch button[data-season="normal"]{
+    background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
+  }
+</style></head><body><div aria-label="Season theme switch" class="season-switch" id="season-switch" role="toolbar">
+<button aria-pressed="true" data-season="normal" type="button">Normal</button>
+<button data-season="spring" type="button">Spring</button>
+<button data-season="summer" type="button">Summer</button>
+<button data-season="autumn" type="button">Autumn</button>
+<button data-season="winter" type="button">Winter</button>
+</div><div aria-label="Quick actions" class="quick-actions" role="toolbar">
+<button data-copy="nabarun.deb@chicagobooth.edu" title="Copy email address" type="button">Copy Email</button>
+<a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&amp;hl=en" rel="noopener" role="button" target="_blank" title="Open Google Scholar profile">Open Scholar</a>
+</div><div class="page"><aside class="sidebar">
+<ul class="menu">
+<li><a class="" href="index.html">Home</a></li>
+<li><a class="current" href="publications.html">Publications</a></li>
+<li><a href="teachings.html">Teaching</a></li>
+<li><a href="CurrentCV.pdf">CV</a></li>
 </ul>
-<h2>Manuscripts under revision</h2>
-<ul class="publist flush">
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2504.09279">No-Regret Generative Modeling via Parabolic Monge-Ampère PDE </a> ("Major Revision" requested at the <i> Annals of Statistics </i>). </li <ul <li><p><strong><i>Nabarun Deb</i></strong>, <i>Tengyuan Liang</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2307.14600.pdf">Gibbs Measures with Multilinear Forms</a> ("Major Revision" requested at the <i>Annals of Applied Probability</i>). </li <ul <li><p><i>Sohom Bhattacharya</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2111.15524.pdf">Efficiency of Regression (Un)-Adjusted Rosenbaum’s Rank-based Estimator in Randomized Experiments</a> ("Major Revision" requested at <i>Biometrika</i>). </li <ul <li><p><i>Aditya Ghosh</i>, <strong><i>Nabarun Deb</i></strong>, <i>Bikram Karmakar</i>, <i>Bodhisattva Sen</i>.</div></li>
-</ul>
-<h2>Preprints</h2>
-<ul class="publist flush">
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2507.23285">CLT in high-dimensional Bayesian linear regression with low SNR </a> (Preprint). </li <ul <li><p><i>Seunghyun Lee</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2507.00889">Phase Transition in Nonparametric Minimax Rates for Covariate Shifts on Approximate Manifolds </a> (Preprint). </li <ul <li><p><i>Yuyao Wang</i>, <strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2503.21152">Fluctuations in Random Field Ising models </a> (Preprint). </li <ul <li><p><i>Seunghyun Lee</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2401.08978.pdf">Trade-off Between Dependence and Complexity for Nonparametric Learning — an Empirical Process Approach </a> (Preprint). </li <ul <li><p><strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2010.01768.pdf">Measuring Association on Topological Spaces Using Kernels and Geometric Graphs</a>. </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
-</ul>
-<h1>Selected Talks</h1>
-  <ul>
+</aside><main class="content"><h1>Publications</h1><h2>Accepted manuscripts</h2><ul class="publist flush">
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2411.13080">Distribution-free Measures of Association based on Optimal Transport </a> ("Accepted" at the <i> Indian Journal of Pure Applied Math </i>, special issue in honor of Prof. K. R. Parthasarathy). </div></li><p><strong><i>Nabarun Deb</i></strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2307.16421.pdf">Wasserstein Mirror Gradient Flow as the Limit of the Sinkhorn Algorithm</a> ("Accepted" at the <i> Annals of Probability </i>). </div></li><p><strong><i>Nabarun Deb</i></strong>, <i>Young-Heon Kim</i>, <i>Soumik Pal</i>, <i> Geoffrey Schiebinger</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2212.03944.pdf">LDP for Inhomogeneous U-Statistics</a> ("Accepted" at the <i>Annals of Applied Probability</i>). </div></li><p><i>Sohom Bhattacharya</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2107.01718.pdf">Rates of Estimation of Optimal Transport Maps using Plug-in Estimators via Barycentric Projections</a> ("Accepted" at <i> Neural Information Processing Systems (NeurIPS) 2021<i>). </i></i></div></li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.15140.pdf">Exact Detection Thresholds for Chatterjee’s Correlation</a> ("Accepted" at <i> Bernoulli</i>). </div></li><p><i>Arnab Auddy</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sagnik Nandy</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.01986.pdf">Pitman Efficiency Lower Bounds for Multivariate Distribution-Free Tests Based on Optimal Transport</a>. ("Accepted" at the <i>Journal of the Royal Statistical Society: Series B</i>). </div></li><p><strong>Nabarun Deb</strong>, <i>Bhaswar B. Bhattacharya</i>, <i>Bodhisattva Sen</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.14804.pdf">Kernel Partial Correlation Coefficient -- a Measure of Conditional Dependence</a> ("Accepted" at <i> Journal of Machine Learning Research (JMLR) </i>). <a href="https://cran.r-project.org/web/packages/KPC/index.html" style="color:#FF0000;">R package (CRAN).</a> </div></li><p><i>Zhen Huang</i>, <strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.05784.pdf">Detecting Structured Signals in Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </i></i></div></li><p><strong>Nabarun Deb</strong>, <i>Rajarshi Mukherjee</i>, <i>Sumit Mukherjee</i>, <i>Ming Yuan</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2005.00710.pdf">Fluctuations in Mean-Field Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </i></i></div></li><p><strong>Nabarun Deb</strong>, <i>Sumit Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1909.08733.pdf">Multivariate Rank-based Distribution-free Nonparametric Testing using Measure Transportation</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://github.com/NabarunD/MultiDistFree" style="color:#FF0000;">Associated R codes (GitHub).</a> </div></li><p><strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1810.07897.pdf">Two-component Mixture Model in the Presence of Covariates</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://cran.r-project.org/web/packages/NPMLEmix/index.html" style="color:#FF0000;">R package (CRAN).</a> </div></li><p><strong>Nabarun Deb</strong>, <i>Sujayam Saha</i>, <i></i>Adityanand Guntuboyina,  <i>Bodhisattva Sen</i>.
+</p></p></p></p></p></p></p></p></p></p></p></ul><h2>Manuscripts under revision</h2><ul class="publist flush">
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2504.09279">No-Regret Generative Modeling via Parabolic Monge-Ampère PDE </a> ("Major Revision" requested at the <i> Annals of Statistics </i>). </div></li><p><strong><i>Nabarun Deb</i></strong>, <i>Tengyuan Liang</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2307.14600.pdf">Gibbs Measures with Multilinear Forms</a> ("Major Revision" requested at the <i>Annals of Applied Probability</i>). </div></li><p><i>Sohom Bhattacharya</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2111.15524.pdf">Efficiency of Regression (Un)-Adjusted Rosenbaum’s Rank-based Estimator in Randomized Experiments</a> ("Major Revision" requested at <i>Biometrika</i>). </div></li><p><i>Aditya Ghosh</i>, <strong><i>Nabarun Deb</i></strong>, <i>Bikram Karmakar</i>, <i>Bodhisattva Sen</i>.
+</p></p></p></ul><h2>Preprints</h2><ul class="publist flush">
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2507.23285">CLT in high-dimensional Bayesian linear regression with low SNR </a> (Preprint). </div></li><p><i>Seunghyun Lee</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2507.00889">Phase Transition in Nonparametric Minimax Rates for Covariate Shifts on Approximate Manifolds </a> (Preprint). </div></li><p><i>Yuyao Wang</i>, <strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2503.21152">Fluctuations in Random Field Ising models </a> (Preprint). </div></li><p><i>Seunghyun Lee</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2401.08978.pdf">Trade-off Between Dependence and Complexity for Nonparametric Learning — an Empirical Process Approach </a> (Preprint). </div></li><p><strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2010.01768.pdf">Measuring Association on Topological Spaces Using Kernels and Geometric Graphs</a>. </div></li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.
+</p></p></p></p></p></ul><h1>Selected Talks</h1><ul>
 <li><p><a href="ETHtalk.pdf">Measuring the strength of (conditional) association on topological spaces using kernels and graphs </a>- October, 2021</p>
 </li>
 <li><p><a href="IISA2019.pdf">Multivariate rank-based distribution-free nonparametric testing using optimal transport </a>- February, 2020</p>
 </li>
-    <li><p><a href="FinalJSM2019.pdf">Nonparametric estimation in two-component mixture models with covariates </a>- August, 2019</p>
+<li><p><a href="FinalJSM2019.pdf">Nonparametric estimation in two-component mixture models with covariates </a>- August, 2019</p>
 </li>
-    <li><p><a href="St-Flour2019.pdf">Fluctuations in the Mean-Field Ising model </a>- July, 2019</p>
+<li><p><a href="St-Flour2019.pdf">Fluctuations in the Mean-Field Ising model </a>- July, 2019</p>
 </li>
 <!--<li><p>information theory</p>-->
 <!--</li>-->
 </ul>
-Details on other talks I have given can be found in my <a href="CurrentCV.pdf">CV</a>
-  
-</div>
-</td>
-</tr>
-</table>
-
-<!-- Season switcher UI -->
-<div class="season-switch" id="season-switch" role="toolbar" aria-label="Season theme switch"><button type="button" data-season="normal" aria-pressed="true" title="Solid color (no photo)">Normal</button><button type="button" data-season="spring" aria-pressed="false" title="Force Spring">Spring</button><button type="button" data-season="summer" aria-pressed="false" title="Force Summer">Summer</button><button type="button" data-season="autumn" aria-pressed="false" title="Force Autumn">Autumn</button><button type="button" data-season="winter" aria-pressed="false" title="Force Winter">Winter</button></div>
-
-<!-- Quick actions -->
-<div class="quick-actions" id="quick-actions" role="toolbar" aria-label="Quick actions">
-  <button type="button" data-copy="nabarun.deb@chicagobooth.edu" title="Copy email address">Copy Email</button>
-  <a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" role="button" title="Open Google Scholar profile">Open Scholar</a>
-</div>
-
-<script type="text/javascript">
-(function(){
-  /* hemisphere removed */
-  var seasonMode = (function(){
-  var q = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
-  if (q) { localStorage.setItem('seasonMode', q[1].toLowerCase()); return q[1].toLowerCase(); }
-  return localStorage.getItem('seasonMode') || 'normal';
-})();
-
-  function seasonByDate(d, hemi){
-    hemi = (hemi || hemisphere).toLowerCase();
-    var m = d.getMonth() + 1;
-    if (hemi === 'north'){
-      if (m===12 || m<=2) return 'winter';
-      if (m>=3 && m<=5)  return 'spring';
-      if (m>=6 && m<=8)  return 'summer';
-      return 'autumn';
-    } else {
-      if (m===12 || m<=2) return 'summer';
-      if (m>=3 && m<=5)  return 'autumn';
-      if (m>=6 && m<=8)  return 'winter';
-      return 'spring';
-    }
-  }
-  function setPressed(mode){
-    var buttons = document.querySelectorAll('#season-switch button[data-season]');
-    for (var i=0;i<buttons.length;i++){
-      buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season')===mode));
-    }
-  }
-  function syncMetaTheme(){
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
-    var bg = getComputedStyle(document.documentElement).getPropertyValue('--bg');
-    meta.content = (bg||'#ffffff').trim();
-  }
-  function applySeason(mode){
-  var root = document.documentElement;
-  root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
-  if (mode === 'normal') { root.classList.add('mode-normal'); }
-  else { root.classList.add('season-' + mode); }
-  setPressed(mode);
-  syncMetaTheme();
-}
-  else { root.classList.add('season-' + mode); }
-  setPressed(mode);
-  syncMetaTheme();
-}
-
-  applySeason(seasonMode);
-  updateHemisphereToggle();
-
-  var toolbar = document.getElementById('season-switch');
-  if (toolbar){
-    toolbar.addEventListener('click', function(e){
-      var btn = e.target.closest && e.target.closest('button[data-season]');
-      if (!btn) return;
-      var mode = btn.getAttribute('data-season');
-      seasonMode = mode;
-      localStorage.setItem('seasonMode', mode);
-      applySeason(mode);
-    }, false);
-  }
-  var hemiBtn = document.getElementById('hemisphere-toggle');
-  if (hemiBtn){
-    hemiBtn.addEventListener('click', function(){
-      hemisphere = (hemisphere === 'north') ? 'south' : 'north';
-      localStorage.setItem('hemisphere', hemisphere);
-      updateHemisphereToggle();
-      applySeason(localStorage.getItem('seasonMode') || 'auto');
-    }, false);
-  }
-
-  // Copy email
-  document.addEventListener('click', async function(e){
-    var btn = e.target.closest && e.target.closest('button[data-copy]');
-    if (!btn) return;
-    var text = btn.getAttribute('data-copy');
-    var label = btn.textContent;
-    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = label; }, 1200); }
-    catch(err){ btn.textContent = 'Press Ctrl/⌘+C'; setTimeout(function(){ btn.textContent = label; }, 1500); }
-  }, false);
-})();
-</script>
-
-
-<script>
-// Robust seasonal switcher (publications): DOM-ready, overrides any earlier event wiring
-(function(){
-  function setPressed(mode){
-    var buttons = document.querySelectorAll('#season-switch button[data-season]');
-    for (var i=0; i<buttons.length; i++) {
-      var pressed = String(buttons[i].getAttribute('data-season') === mode);
-      buttons[i].setAttribute('aria-pressed', pressed);
-    }
-  }
-  function syncMetaTheme(){
-    try {
-      var meta = document.querySelector('meta[name="theme-color"]');
-      if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
-      var bg = getComputedStyle(document.body).backgroundColor;
-      meta.content = (bg || '#FAF7F0').trim();
-    } catch(e){}
-  }
-  function applySeason(mode){
-    var root = document.documentElement;
-    root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
-    if (mode === 'normal') { root.classList.add('mode-normal'); }
-    else { root.classList.add('season-' + mode); }
-    try { localStorage.setItem('seasonMode', mode); } catch(e){}
-    setPressed(mode);
-    syncMetaTheme();
-  }
-
-  function getInitialMode(){
-    // ?season=spring|summer|autumn|winter|normal overrides once
-    var m = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
-    if (m) {
-      try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){}
-      return m[1].toLowerCase();
-    }
-    try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
-  }
-
-  function init(){
-    var toolbar = document.getElementById('season-switch');
-    // Guard: only run if toolbar exists
-    if (!toolbar) return;
-    // Delegate clicks
-    toolbar.addEventListener('click', function(e){
-      var btn = e.target.closest && e.target.closest('button[data-season]');
-      if (!btn) return;
-      applySeason(btn.getAttribute('data-season'));
-    }, false);
-    // Apply initial
-    applySeason(getInitialMode());
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
-})();
-</script>
-  <script src="season.js?v=3"></script>
-
-<div class="quick-actions" role="toolbar" aria-label="Quick actions">
-  <button type="button" data-copy="nabarun.deb@chicagobooth.edu" title="Copy email address">Copy Email</button>
-  <a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&hl=en" target="_blank" rel="noopener" role="button" title="Open Google Scholar profile">Open Scholar</a>
-</div>
-<div class="season-switch" id="season-switch" role="toolbar" aria-label="Season theme switch">
-  <button type="button" data-season="normal" aria-pressed="true">Normal</button>
-  <button type="button" data-season="spring">Spring</button>
-  <button type="button" data-season="summer">Summer</button>
-  <button type="button" data-season="autumn">Autumn</button>
-  <button type="button" data-season="winter">Winter</button>
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
+Details on other talks I have given can be found in my <a href="CurrentCV.pdf">CV</a></main></div><script>
 (function(){
   function setPressed(mode){
     var buttons = document.querySelectorAll('#season-switch button[data-season]');
@@ -489,46 +149,43 @@ Details on other talks I have given can be found in my <a href="CurrentCV.pdf">C
       buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season')===mode));
     }
   }
+  function syncMetaTheme(){
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+    var bg = getComputedStyle(document.body).backgroundColor;
+    meta.content = (bg||'#FAF7F0').trim();
+  }
   function applySeason(mode){
     var root = document.documentElement;
-    root.className = root.className.replace(/\b(season\-(spring|summer|autumn|winter)|mode\-normal)\b/g, '').replace(/\s{2,}/g,' ').trim();
-    root.className += (mode==='normal' ? ' mode-normal' : ' season-' + mode);
-    try { window.localStorage && localStorage.setItem('seasonMode', mode); } catch(e){}
-    setPressed(mode);
+    root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
+    if (mode === 'normal') root.classList.add('mode-normal'); else root.classList.add('season-' + mode);
+    try { localStorage.setItem('seasonMode', mode); } catch(e){}
+    setPressed(mode); syncMetaTheme();
   }
   function initialMode(){
-    var m = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)\b/i);
+    var m = (''+location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)\\b/i);
     if (m) { try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){} return m[1].toLowerCase(); }
     try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
   }
-  function onReady(fn){ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, false); else fn(); }
-  onReady(function(){
+  function wire(){
     var toolbar = document.getElementById('season-switch');
     if (toolbar){
       toolbar.addEventListener('click', function(e){
-        var t = e.target || e.srcElement;
-        while(t && t.nodeType===1 && (!t.getAttribute('data-season'))) t = t.parentNode;
-        if (!t || !t.getAttribute) return;
-        applySeason(t.getAttribute('data-season'));
+        var btn = e.target.closest && e.target.closest('button[data-season]');
+        if (!btn) return;
+        applySeason(btn.getAttribute('data-season'));
       }, false);
     }
-    document.addEventListener('click', function(e){
-      var t = e.target || e.srcElement;
-      while (t && t.nodeType===1 && (!t.getAttribute('data-copy'))) t = t.parentNode;
-      if (!t || !t.getAttribute) return;
-      var text = t.getAttribute('data-copy'); var label = t.textContent || t.innerText;
-      if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(function(){ t.textContent='Copied!'; setTimeout(function(){ t.textContent=label; },1200); },
-                                          function(){ t.textContent='Press Ctrl/\u2318+C'; setTimeout(function(){ t.textContent=label; },1500); });
-      }
+    // Copy email (with fallback)
+    document.addEventListener('click', async function(e){
+      var btn = e.target.closest && e.target.closest('button[data-copy]');
+      if (!btn) return;
+      var text = btn.getAttribute('data-copy'), label = btn.textContent;
+      try { await navigator.clipboard.writeText(text); btn.textContent='Copied!'; setTimeout(()=>btn.textContent=label,1200); }
+      catch(err){ btn.textContent='Press Ctrl/⌘+C'; setTimeout(()=>btn.textContent=label,1500); }
     }, false);
     applySeason(initialMode());
-  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire, {once:true}); else wire();
 })();
-//]]>
-</script>
-
-</body>
-<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-41540427-2","auto",{"siteSpeedSampleRate":100});ga("send","pageview");}</script></HTML>
-
-
+</script></body></html>
