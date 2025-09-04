@@ -7,6 +7,105 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
 <title></title>
+
+<style>
+/* ---- Layout parity: thin divider, bullets ---- */
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22); padding-right: 16px; }
+td#layout-content { padding-left: 14px; }
+#layout-content ul { margin: 0 0 0 0; padding: 0 0 0 20px; }
+#layout-content li p { margin: 0 0 6px 0; }
+#toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+
+/* ---- Floating toolbars ---- */
+.season-switch, .quick-actions {
+  position: fixed; z-index: 9999; display: flex; gap: 6px;
+  padding: 6px 6px; border-radius: 10px;
+  background: rgba(0,0,0,.05); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.season-switch { right: 12px; bottom: 12px; }
+.quick-actions { right: 12px; top: 12px; }
+.season-switch button, .quick-actions button, .quick-actions a {
+  border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background: #fff; cursor: pointer;
+  text-decoration: none; color:#111;
+}
+.season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
+
+/* ---- Normal (no photo) ---- */
+:root.mode-normal body {
+  background: #FAF7F0 !important;
+  background-image: none !important;
+}
+
+/* Avoid scenic layers if present */
+:root.season-spring #season-bg,
+:root.season-summer #season-bg,
+:root.season-autumn #season-bg,
+:root.season-winter #season-bg { background-image: none !important; }
+
+/* ---- Seasonal photos: same overlays as homepage/publications ---- */
+:root.season-spring body {
+  background-image:
+    linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)),
+    url('spring.jpg') !important;
+  background-size: cover !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-summer body {
+  background-image:
+    linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)),
+    url('summer.jpg') !important;
+  background-size: cover !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-autumn body {
+  background-image:
+    linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)),
+    url('autumn.jpg') !important;
+  background-size: cover !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-winter body {
+  background-image:
+    linear-gradient(rgba(240,247,255,0.72), rgba(240,247,255,0.72)),
+    url('winter.jpg') !important;
+  background-size: cover !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+
+/* Winter buttons stay white */
+:root.season-winter .season-switch button,
+:root.season-winter .quick-actions button,
+:root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
+
+/* Normal button: text-only look */
+#season-switch button[data-season="normal"] {
+  background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
+}
+</style>
+
+<style>
+/* --- Left panel menu: match index/publications exactly --- */
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
+#layout-menu .menu-category { margin: 6px 0 8px 0 !important; font-weight: 700 !important; color: #111 !important; }
+#layout-menu .menu-item a,
+#layout-menu li a,
+#layout-menu a {
+  display: block;
+  background: #fff;
+  color: #111 !important;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin: 8px 0;
+  text-decoration: none;
+}
+#layout-menu a:focus,
+#layout-menu a:hover {
+  outline: 2px solid #111;
+  text-decoration: none;
+}
+</style>
 </head>
 <body>
 <table summary="Table for page layout." id="tlayout">
@@ -21,7 +120,7 @@
 </td>
 <td id="layout-content">
 <h1>Teaching </h1>
-<p> Small class instructor for Integral Calculus with Applications in the Mathematics Department at UBC.</p>
+<p><strong>Business Statistics</strong>, Chicago Booth — taught in <em>Spring 2024</em> and <em>Winter 2025</em>.</p><p> Small class instructor for Integral Calculus with Applications in the Mathematics Department at UBC.</p>
   <p>Teaching assistantship at Columbia</p>
 <ul>
 <li><p>Theoretical Statistics for first year Ph.D. students (2019, 2020, 2021, 2022)</p>
@@ -41,13 +140,84 @@
 </ul>
 <p>Taught the qualifying Exams workshop on Theoretical Statistics for Ph.D. students, Summer 2019</p>
 <p>Winner of the <a href="https://stat.columbia.edu/minghui-yu-teaching-assistant-award">2019 Minghui Yu Teaching Assistant Award</a> </p>
-<div id="footer">
-<div id="footer-text">
-Page generated 2018-03-26 15:37:51 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
-</div>
 </div>
 </td>
 </tr>
 </table>
+
+<!-- Quick actions (top-right) -->
+<div class="quick-actions" role="toolbar" aria-label="Quick actions">
+  <button type="button" data-copy="nabarun.deb@chicagobooth.edu" title="Copy email address">Copy Email</button>
+  <a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&hl=en"
+     target="_blank" rel="noopener noreferrer" role="button" title="Open Google Scholar profile">Open Scholar</a>
+</div>
+
+<!-- Season switcher (bottom-right) -->
+<div class="season-switch" id="season-switch" role="toolbar" aria-label="Season theme switch">
+  <button type="button" data-season="normal" aria-pressed="true" title="Solid color (no photo)">Normal</button>
+  <button type="button" data-season="spring" aria-pressed="false" title="Spring photo">Spring</button>
+  <button type="button" data-season="summer" aria-pressed="false" title="Summer photo">Summer</button>
+  <button type="button" data-season="autumn" aria-pressed="false" title="Autumn photo">Autumn</button>
+  <button type="button" data-season="winter" aria-pressed="false" title="Winter photo">Winter</button>
+</div>
+
+<script>
+(function(){
+  function setPressed(mode){
+    var buttons = document.querySelectorAll('#season-switch button[data-season]');
+    for (var i=0; i<buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season') === mode));
+    }
+  }
+  function syncMetaTheme(){
+    try {
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+      var bg = getComputedStyle(document.body).backgroundColor;
+      meta.content = (bg || '#FAF7F0').trim();
+    } catch(e){}
+  }
+  function applySeason(mode){
+    var root = document.documentElement;
+    root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
+    if (mode === 'normal') { root.classList.add('mode-normal'); }
+    else { root.classList.add('season-' + mode); }
+    try { localStorage.setItem('seasonMode', mode); } catch(e){}
+    setPressed(mode);
+    syncMetaTheme();
+  }
+  function getInitialMode(){
+    var m = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
+    if (m) {
+      try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){}
+      return m[1].toLowerCase();
+    }
+    try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
+  }
+  function init(){
+    var toolbar = document.getElementById('season-switch');
+    if (toolbar){
+      toolbar.addEventListener('click', function(e){
+        var btn = e.target.closest && e.target.closest('button[data-season]');
+        if (!btn) return;
+        applySeason(btn.getAttribute('data-season'));
+      }, false);
+    }
+    applySeason(getInitialMode());
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once:true });
+  else init();
+
+  // Copy email (works with fallback on file://)
+  document.addEventListener('click', async function(e){
+    var btn = e.target.closest && e.target.closest('button[data-copy]');
+    if (!btn) return;
+    var text = btn.getAttribute('data-copy');
+    var label = btn.textContent;
+    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = label; }, 1200); }
+    catch(err){ btn.textContent = 'Press Ctrl/⌘+C'; setTimeout(function(){ btn.textContent = label; }, 1500); }
+  }, false);
+})();
+</script>
 </body>
 <script>if(window.parent==window){(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-41540427-2","auto",{"siteSpeedSampleRate":100});ga("send","pageview");}</script></HTML>
