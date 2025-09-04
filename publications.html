@@ -219,66 +219,34 @@
 <style>
 #layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
 </style>
-
 <style type="text/css">
-  /* Keep content above background layers */
-  #toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
-
-  /* Match index: translucent center so seasonal photo shows through */
-  #layout-content, td#layout-content { background: rgba(255,255,255,0.40) !important; border-radius: 10px; }
-
-  /* Left menu as bordered buttons (consistent with index) */
-  td#layout-menu { border-right: 1px solid rgba(0,0,0,.22); padding-right: 16px; }
-  #layout-menu .menu-item a, #layout-menu a {
-    display:block; box-sizing:border-box; width:100%;
-    background:#fff; color:#111; border:1px solid #000; border-radius:4px;
-    padding:8px 10px; margin:8px 0; text-decoration:none;
-  }
-
-  /* Floating toolbars */
-  .season-switch, .quick-actions {
-    position: fixed; z-index: 9999; display:flex; gap:6px;
-    padding:6px; border-radius:10px; background: rgba(0,0,0,.05);
-    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
-    font: 12px/1.6 ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  .season-switch { right: 12px; bottom: 12px; }
-  .quick-actions { right: 12px; top: 12px; }
-  .season-switch button, .quick-actions button, .quick-actions a {
-    border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background:#fff; color:#111; text-decoration:none; cursor:pointer;
-  }
-  .season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
-
-  /* Normal (no seasonal photo) */
-  :root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
-
-  /* Seasonal photos (images at site root) */
-  :root.season-spring body {
-    background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important;
-    background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
-  }
-  :root.season-summer body {
-    background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important;
-    background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
-  }
-  :root.season-autumn body {
-    background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important;
-    background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
-  }
-  :root.season-winter body {
-    background-image: linear-gradient(rgba(240,247,255,0.70), rgba(240,247,255,0.70)), url('winter.jpg') !important;
-    background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
-  }
-
-  /* Winter buttons stay white */
-  :root.season-winter .season-switch button,
-  :root.season-winter .quick-actions button,
-  :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
-
-  /* Make “Normal” look like a linky button */
-  #season-switch button[data-season="normal"] {
-    background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
-  }
+#toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+#layout-content, td#layout-content { background: rgba(255,255,255,0.56) !important; border-radius: 10px; }
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22); padding-right: 16px; }
+#layout-menu .menu-item a, #layout-menu a {
+  display:block; box-sizing:border-box; width:100%;
+  background:#fff; color:#111; border:1px solid #000; border-radius:4px;
+  padding:8px 10px; margin:8px 0; text-decoration:none;
+}
+.season-switch, .quick-actions {
+  position: fixed; z-index: 9999; display:flex; gap:6px;
+  padding:6px; border-radius:10px; background: rgba(0,0,0,.05);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  font: 12px/1.6 ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.season-switch { right: 12px; bottom: 12px; }
+.quick-actions { right: 12px; top: 12px; }
+.season-switch button, .quick-actions button, .quick-actions a {
+  border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background:#fff; color:#111; text-decoration:none; cursor:pointer;
+}
+.season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
+:root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
+:root.season-spring body { background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
+:root.season-summer body { background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
+:root.season-autumn body { background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
+:root.season-winter body { background-image: linear-gradient(rgba(240,247,255,0.70), rgba(240,247,255,0.70)), url('winter.jpg') !important; background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important; }
+:root.season-winter .season-switch button, :root.season-winter .quick-actions button, :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
+#season-switch button[data-season="normal"]{ background:transparent !important; border-color:rgba(0,0,0,.2) !important; color:#3A6EA5 !important; }
 </style>
 
 </head>
@@ -291,7 +259,6 @@
 <div class="menu-item"><a href="publications.html" class="current">Research</a></div>
 <div class="menu-item"><a href="teachings.html">Teaching</a></div>
 <div class="menu-item"><a href="CV.pdf">CV</a></div>
-
 <!--<div class="menu-item"><a href="experience.html">Experience</a></div>-->
 <!--<div class="menu-item"><a href="fun.html">Misc.</a></div>-->
 </td>
@@ -501,6 +468,18 @@ Details on other talks I have given can be found in my <a href="CurrentCV.pdf">C
 </script>
   <script src="season.js?v=3"></script>
 
+<div class="quick-actions" role="toolbar" aria-label="Quick actions">
+  <button type="button" data-copy="nabarun.deb@chicagobooth.edu" title="Copy email address">Copy Email</button>
+  <a href="https://scholar.google.com/citations?user=-_8QMZIAAAAJ&hl=en" target="_blank" rel="noopener" role="button" title="Open Google Scholar profile">Open Scholar</a>
+</div>
+<div class="season-switch" id="season-switch" role="toolbar" aria-label="Season theme switch">
+  <button type="button" data-season="normal" aria-pressed="true">Normal</button>
+  <button type="button" data-season="spring">Spring</button>
+  <button type="button" data-season="summer">Summer</button>
+  <button type="button" data-season="autumn">Autumn</button>
+  <button type="button" data-season="winter">Winter</button>
+</div>
+
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -510,28 +489,19 @@ Details on other talks I have given can be found in my <a href="CurrentCV.pdf">C
       buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season')===mode));
     }
   }
-  function syncMetaTheme(){
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
-    var bg = (window.getComputedStyle? getComputedStyle(document.body).backgroundColor : '#FAF7F0');
-    meta.content = (bg||'#FAF7F0');
-  }
   function applySeason(mode){
     var root = document.documentElement;
-    root.className = root.className.replace(/\b(season\-(spring|summer|autumn|winter)|mode\-normal)\b/g, '').trim();
+    root.className = root.className.replace(/\b(season\-(spring|summer|autumn|winter)|mode\-normal)\b/g, '').replace(/\s{2,}/g,' ').trim();
     root.className += (mode==='normal' ? ' mode-normal' : ' season-' + mode);
     try { window.localStorage && localStorage.setItem('seasonMode', mode); } catch(e){}
-    setPressed(mode); syncMetaTheme();
+    setPressed(mode);
   }
   function initialMode(){
     var m = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)\b/i);
     if (m) { try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){} return m[1].toLowerCase(); }
     try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
   }
-  function onReady(fn){
-    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', fn, {once:true}); }
-    else { fn(); }
-  }
+  function onReady(fn){ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, false); else fn(); }
   onReady(function(){
     var toolbar = document.getElementById('season-switch');
     if (toolbar){
@@ -547,10 +517,9 @@ Details on other talks I have given can be found in my <a href="CurrentCV.pdf">C
       while (t && t.nodeType===1 && (!t.getAttribute('data-copy'))) t = t.parentNode;
       if (!t || !t.getAttribute) return;
       var text = t.getAttribute('data-copy'); var label = t.textContent || t.innerText;
-      var ok = false;
       if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(function(){ ok=true; t.textContent='Copied!'; setTimeout(function(){ t.textContent=label; }, 1200); })
-        .catch(function(){ t.textContent='Press Ctrl/\u2318+ C'; setTimeout(function(){ t.textContent=label; }, 1500); });
+        navigator.clipboard.writeText(text).then(function(){ t.textContent='Copied!'; setTimeout(function(){ t.textContent=label; },1200); },
+                                          function(){ t.textContent='Press Ctrl/\u2318+C'; setTimeout(function(){ t.textContent=label; },1500); });
       }
     }, false);
     applySeason(initialMode());
