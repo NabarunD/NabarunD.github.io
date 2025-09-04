@@ -1,9 +1,15 @@
-<script>
+
+// PURE JS (no <script> tags). Floating toolbars + seasonal backgrounds initializer.
 (function(){
-  // Ensure a sane viewport on laptops/phones
+  // Ensure good viewport on laptops/phones
   (function ensureViewport(){
     var vp = document.querySelector('meta[name="viewport"]');
-    if (!vp) { var m = document.createElement('meta'); m.name='viewport'; m.content='width=device-width, initial-scale=1'; document.head.appendChild(m); }
+    if (!vp) {
+      var m = document.createElement('meta');
+      m.name = 'viewport';
+      m.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(m);
+    }
   })();
 
   function setPressed(mode){
@@ -32,7 +38,7 @@
     try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
   }
 
-  // Inject controls if the page doesn’t have them
+  // Inject toolbars if page doesn’t have them
   function ensureToolbars(){
     if (!document.querySelector('.quick-actions')){
       var qa = document.createElement('div');
@@ -55,6 +61,7 @@
 
   function wire(){
     ensureToolbars();
+
     var toolbar = document.getElementById('season-switch');
     if (toolbar){
       toolbar.addEventListener('click', function(e){
@@ -63,6 +70,7 @@
         applySeason(btn.getAttribute('data-season'));
       }, false);
     }
+
     // Copy email with fallback
     document.addEventListener('click', async function(e){
       var btn = e.target.closest && e.target.closest('button[data-copy]');
@@ -78,4 +86,3 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire, {once:true});
   else wire();
 })();
-</script>

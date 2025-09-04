@@ -1,3 +1,5 @@
+
+/* Floating toolbars */
 .season-switch, .quick-actions {
   position: fixed; z-index: 9999; display: flex; gap: 6px;
   padding: 6px 6px; border-radius: 10px;
@@ -6,17 +8,21 @@
 }
 .season-switch { right: 12px; bottom: 12px; }
 .quick-actions { right: 12px; top: 12px; }
+
 .season-switch button, .quick-actions button, .quick-actions a {
   border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background: #fff; cursor: pointer;
   text-decoration: none; color:#111;
 }
 .season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
 
+/* Keep page content above the background image */
 #toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
-#layout-content, td#layout-content { background: rgba(255,255,255,0.74); border-radius: 8px; }
 
-/* Normal (no photo) */
-:root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
+/* Translucent center column so seasonal photo shows under it */
+#layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
+
+/* NORMAL (no photo) */
+:root.mode-normal body { background: #FAF7F0 !important; background-image: none !important; }
 
 /* Seasonal photos (expects images in repo root) */
 :root.season-spring body {
@@ -31,18 +37,17 @@
   background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important;
   background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
 }
-:root.season-wwinter body { /* typo guard will be ignored if not matched */ }
 :root.season-winter body {
   background-image: linear-gradient(rgba(240,247,255,0.72), rgba(240,247,255,0.72)), url('winter.jpg') !important;
   background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
 }
+
+/* Winter buttons stay white */
 :root.season-winter .season-switch button,
 :root.season-winter .quick-actions button,
 :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
-#season-switch button[data-season="normal"] { background:transparent !important; border-color:rgba(0,0,0,.2) !important; color:#3A6EA5 !important; }
 
-
-/* === Stronger LEFT MENU button styling (pixel-consistent) === */
+/* Left menu: force links to be full-width bordered buttons */
 td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
 #layout-menu .menu-category { margin: 6px 0 8px 0 !important; font-weight: 700 !important; color: #111 !important; }
 #layout-menu .menu-item { margin: 0 !important; padding: 0 !important; }
@@ -60,11 +65,7 @@ td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-rig
 }
 #layout-menu .menu-item a.current { background: #111 !important; color: #fff !important; }
 
-/* === Make center pane translucent so seasonal image shows under content === */
-#layout-content, td#layout-content {
-  background: rgba(255,255,255,0.74) !important;
-  border-radius: 8px !important;
+/* Make “Normal” look like a text button */
+#season-switch button[data-season="normal"] {
+  background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
 }
-
-/* === Ensure seasonal background always applies on body/html === */
-html, body { min-height: 100% !important; }
