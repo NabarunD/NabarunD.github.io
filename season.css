@@ -40,3 +40,31 @@
 :root.season-winter .quick-actions button,
 :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
 #season-switch button[data-season="normal"] { background:transparent !important; border-color:rgba(0,0,0,.2) !important; color:#3A6EA5 !important; }
+
+
+/* === Stronger LEFT MENU button styling (pixel-consistent) === */
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
+#layout-menu .menu-category { margin: 6px 0 8px 0 !important; font-weight: 700 !important; color: #111 !important; }
+#layout-menu .menu-item { margin: 0 !important; padding: 0 !important; }
+#layout-menu .menu-item a, #layout-menu a {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #000 !important;
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+  margin: 8px 0 !important;
+  text-decoration: none !important;
+}
+#layout-menu .menu-item a.current { background: #111 !important; color: #fff !important; }
+
+/* === Make center pane translucent so seasonal image shows under content === */
+#layout-content, td#layout-content {
+  background: rgba(255,255,255,0.74) !important;
+  border-radius: 8px !important;
+}
+
+/* === Ensure seasonal background always applies on body/html === */
+html, body { min-height: 100% !important; }
