@@ -162,24 +162,70 @@ table.imgtable { margin-top: 2px !important; }    /* keep the photo close under 
 }
 </style>
   
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 #layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
 </style>
 
-<link rel="stylesheet" href="/season.css?v=8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  /* Inline fallback to ensure seasonal photo shows under center column */
-  #layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
-  /* Left menu as proper bordered buttons */
-  td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
-  #layout-menu .menu-item a, #layout-menu a {
-    display:block !important; box-sizing:border-box !important; width:100% !important;
-    background:#fff !important; color:#111 !important; border:1px solid #000 !important; border-radius:4px !important;
-    padding:6px 10px !important; margin:8px 0 !important; text-decoration:none !important;
-  }
-  /* Keep content above background */
-  #toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+/* === Seasonal UI (INLINE, page-local) === */
+.season-switch, .quick-actions {
+  position: fixed; z-index: 9999; display: flex; gap: 6px;
+  padding: 6px 6px; border-radius: 10px;
+  background: rgba(0,0,0,.05); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.season-switch { right: 12px; bottom: 12px; }
+.quick-actions { right: 12px; top: 12px; }
+.season-switch button, .quick-actions button, .quick-actions a {
+  border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background: #fff; cursor: pointer;
+  text-decoration: none; color:#111;
+}
+.season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
+
+/* Keep content above the background */
+#toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
+
+/* Translucent center so seasonal photo shows under it */
+#layout-content, td#layout-content { background: rgba(255,255,255,0.74) !important; border-radius: 8px !important; }
+
+/* Left menu: proper bordered buttons */
+td#layout-menu { border-right: 1px solid rgba(0,0,0,.22) !important; padding-right: 16px !important; }
+#layout-menu .menu-item a, #layout-menu a {
+  display:block !important; box-sizing:border-box !important; width:100% !important;
+  background:#fff !important; color:#111 !important; border:1px solid #000 !important; border-radius:4px !important;
+  padding:6px 10px !important; margin:8px 0 !important; text-decoration:none !important;
+}
+
+/* Normal (no photo) */
+:root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
+
+/* Seasonal photos (expects spring.jpg, summer.jpg, autumn.jpg, winter.jpg in site root) */
+:root.season-spring body {
+  background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-summer body {
+  background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-autumn body {
+  background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-winter body {
+  background-image: linear-gradient(rgba(240,247,255,0.72), rgba(240,247,255,0.72)), url('winter.jpg') !important;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; background-attachment: fixed !important;
+}
+:root.season-winter .season-switch button,
+:root.season-winter .quick-actions button,
+:root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
+
+/* Make “Normal” look like a linky button */
+#season-switch button[data-season="normal"] {
+  background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
+}
 </style>
 
 </head>
@@ -321,23 +367,28 @@ Chicago, IL 60637</p>
   }, false);
 })();
 </script>
-  <script src="/season.js?v=8"></script>
+  <script src="season.js"></script>
 
 <script>
 (function(){
-  if (window.__seasonInitRan) return; // don't double-run
   function setPressed(mode){
     var buttons = document.querySelectorAll('#season-switch button[data-season]');
     for (var i=0; i<buttons.length; i++){
       buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-season')===mode));
     }
   }
+  function syncMetaTheme(){
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+    var bg = getComputedStyle(document.body).backgroundColor;
+    meta.content = (bg||'#FAF7F0').trim();
+  }
   function applySeason(mode){
     var root = document.documentElement;
     root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
     if (mode === 'normal') root.classList.add('mode-normal'); else root.classList.add('season-' + mode);
     try { localStorage.setItem('seasonMode', mode); } catch(e){}
-    setPressed(mode);
+    setPressed(mode); syncMetaTheme();
   }
   function initialMode(){
     var m = (''+location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
@@ -348,20 +399,17 @@ Chicago, IL 60637</p>
     var toolbar = document.getElementById('season-switch');
     if (toolbar){
       toolbar.addEventListener('click', function(e){
-        var btn = e.target.closest && e.target.closest('button[data-season]');
-        if (!btn) return;
+        var btn = e.target.closest && e.target.closest('button[data-season]'); if (!btn) return;
         applySeason(btn.getAttribute('data-season'));
-      });
+      }, false);
     }
     document.addEventListener('click', async function(e){
-      var btn = e.target.closest && e.target.closest('button[data-copy]');
-      if (!btn) return;
+      var btn = e.target.closest && e.target.closest('button[data-copy]'); if (!btn) return;
       var text = btn.getAttribute('data-copy'), label = btn.textContent;
       try { await navigator.clipboard.writeText(text); btn.textContent='Copied!'; setTimeout(()=>btn.textContent=label,1200); }
       catch(err){ btn.textContent='Press Ctrl/⌘+C'; setTimeout(()=>btn.textContent=label,1500); }
-    });
+    }, false);
     applySeason(initialMode());
-    window.__seasonInitRan = true;
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire, {once:true}); else wire();
 })();
