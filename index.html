@@ -5,40 +5,54 @@
 <title>Nabarun Deb</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Inline styles: layout, left-menu buttons, translucent content, seasonal backgrounds -->
 <style>
-  :root { --pane-bg: rgba(255,255,255,0.74); --border: rgba(0,0,0,.22); }
+  :root { --pane-bg: rgba(255,255,255,0.40); --border: rgba(0,0,0,.22); }
   html, body { height:100%; margin:0; font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; color:#111; }
 
-  /* Page grid: left menu + content */
-  .page {
-    display:grid; grid-template-columns: 240px 1fr; gap: 20px; align-items:start;
-    max-width: 1200px; margin: 24px auto; padding: 0 16px;
+  /* Layout: left panel + content */
+  .page{
+    display:grid; grid-template-columns: 240px 1fr; gap: 22px; align-items:start;
+    max-width: 1200px; margin: 20px auto; padding: 0 16px;
   }
-  @media (max-width: 900px) { .page { grid-template-columns: 1fr; } }
+  @media (max-width: 900px){ .page{ grid-template-columns: 1fr; } }
 
-  /* Left panel as bordered “buttons” */
+  /* Left panel with bordered “buttons” */
   .sidebar { border-right: 1px solid var(--border); padding-right: 16px; }
-  .menu { list-style:none; padding:0; margin:0; }
-  .menu li { margin: 8px 0; }
-  .menu a {
+  .menu { list-style:none; margin:0; padding:0; }
+  .menu li { margin:8px 0; }
+  .menu a{
     display:block; box-sizing:border-box; width:100%;
     background:#fff; color:#111; border:1px solid #000; border-radius:4px;
     padding:8px 10px; text-decoration:none;
   }
-  .menu a.current { background:#111; color:#fff; }
+  .menu a.current{ background:#111; color:#fff; }
 
-  /* Content pane */
-  .content {
-    background: var(--pane-bg); border-radius: 10px; padding: 20px;
+  /* Content pane more transparent so bg shows through */
+  .content{
+    background: var(--pane-bg); border-radius: 10px; padding: 18px 20px;
     position: relative; z-index: 1;
   }
-  h1 { font-size: 2rem; margin: 0 0 6px 0; }
-  h2 { font-size: 1.25rem; margin: 22px 0 8px; }
-  .subtle { color:#333; margin:0 0 10px; }
+
+  /* Name + photo + contact block */
+  h1{ margin:0 0 6px 0; font-size: 2rem; }
+  .profile-row{
+    display:flex; align-items:flex-start; gap:18px;
+    margin:2px 0 12px 0;
+  }
+  .headshot{
+    width:130px; height:auto; display:block;
+    border-radius:8px; border:1px solid rgba(0,0,0,.2);
+  }
+  .contact-block p{ margin:0 0 6px 0; }
+  .subtle{ color:#333; }
+
+  @media (max-width: 700px){
+    .profile-row{ flex-direction:column; gap:8px; }
+    .headshot{ width:150px; }
+  }
 
   /* Floating toolbars */
-  .season-switch, .quick-actions {
+  .season-switch, .quick-actions{
     position: fixed; z-index: 9999; display:flex; gap:6px;
     padding:6px; border-radius:10px; background: rgba(0,0,0,.05);
     -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
@@ -46,39 +60,41 @@
   }
   .season-switch { right: 12px; bottom: 12px; }
   .quick-actions { right: 12px; top: 12px; }
-  .season-switch button, .quick-actions button, .quick-actions a {
-    border: 1px solid rgba(0,0,0,.15); padding: 3px 8px; border-radius: 8px; background:#fff; cursor:pointer;
-    text-decoration:none; color:#111;
+  .season-switch button, .quick-actions button, .quick-actions a{
+    border: 1px solid rgba(0,0,0,.15); padding:3px 8px; border-radius:8px; background:#fff; color:#111; text-decoration:none; cursor:pointer;
   }
-  .season-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
+  .season-switch button[aria-pressed="true"]{ outline:2px solid currentColor; }
+
+  /* Keep content above background image (if any legacy CSS exists elsewhere) */
+  #toptitle, #layout-menu, #layout-content { position: relative; z-index: 1; }
 
   /* Normal (no photo) */
   :root.mode-normal body { background:#FAF7F0 !important; background-image:none !important; }
 
   /* Seasonal backgrounds (expects images in site root) */
-  :root.season-spring body {
+  :root.season-spring body{
     background-image: linear-gradient(rgba(234,249,240,0.70), rgba(234,249,240,0.70)), url('spring.jpg') !important;
     background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
   }
-  :root.season-summer body {
+  :root.season-summer body{
     background-image: linear-gradient(rgba(255,247,230,0.70), rgba(255,247,230,0.70)), url('summer.jpg') !important;
     background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
   }
-  :root.season-autumn body {
+  :root.season-autumn body{
     background-image: linear-gradient(rgba(255,237,221,0.70), rgba(255,237,221,0.70)), url('autumn.jpg') !important;
     background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
   }
-  :root.season-winter body {
-    background-image: linear-gradient(rgba(240,247,255,0.72), rgba(240,247,255,0.72)), url('winter.jpg') !important;
+  :root.season-winter body{
+    background-image: linear-gradient(rgba(240,247,255,0.70), rgba(240,247,255,0.70)), url('winter.jpg') !important;
     background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important; background-attachment:fixed !important;
   }
-  /* Keep winter buttons white */
+  /* Winter buttons stay white */
   :root.season-winter .season-switch button,
   :root.season-winter .quick-actions button,
   :root.season-winter .quick-actions a { background:#fff; color:inherit; border-color:rgba(0,0,0,.15); }
 
   /* Make “Normal” look like a linky button */
-  #season-switch button[data-season="normal"] {
+  #season-switch button[data-season="normal"]{
     background: transparent !important; border-color: rgba(0,0,0,.2) !important; color: #3A6EA5 !important;
   }
 </style>
@@ -112,12 +128,20 @@
     </ul>
   </aside>
 
-  <!-- CONTENT -->
+  <!-- MAIN CONTENT -->
   <main class="content">
     <h1>Nabarun Deb</h1>
-    <img src="DP.jpg" alt="Nabarun Deb" class="headshot">
-    <p class="subtle">Assistant Professor of Econometrics and Statistics – <a href="https://www.chicagobooth.edu" target="_blank" rel="noopener">Chicago Booth School of Business</a></p>
-    <p class="subtle">nabarun (dot) deb (at) chicagobooth (dot) edu • 5807 S Woodlawn Avenue, Chicago, IL 60637</p>
+
+    <div class="profile-row">
+      <img src="DP.jpg" alt="Nabarun Deb" class="headshot">
+      <div class="contact-block">
+        <p class="subtle">
+          Assistant Professor of Econometrics and Statistics —
+          <a href="https://www.chicagobooth.edu" target="_blank" rel="noopener">Chicago Booth School of Business</a>
+        </p>
+        <p class="subtle">nabarun.deb@chicagobooth.edu • 5807 S Woodlawn Avenue, Chicago, IL 60637</p>
+      </div>
+    </div>
 
     <h2>About Me</h2>
     <p>
@@ -128,7 +152,7 @@
     <p>
       I was the inaugural PIMS Kantorovich Initiative Postdoctoral Fellow at the University of British Columbia, Vancouver (2022–23),
       jointly advised by Prof. Young-Heon Kim, Prof. Soumik Pal, and Prof. Geoffrey Schiebinger.
-      Starting July 2023, I joined Chicago Booth as an Assistant Professor in the Econometrics and Statistics group.
+      Since July 2023, I have been an Assistant Professor at Chicago Booth (Econometrics and Statistics).
     </p>
 
     <h2>Research</h2>
@@ -151,7 +175,7 @@
   </main>
 </div>
 
-<!-- Inline JS: season wiring + copy email (no external dependencies) -->
+<!-- Inline JS: season wiring + copy-email -->
 <script>
 (function(){
   function setPressed(mode){
@@ -174,7 +198,7 @@
     setPressed(mode); syncMetaTheme();
   }
   function initialMode(){
-    var m = (''+location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)\b/i);
+    var m = (''+location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)\\b/i);
     if (m) { try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){} return m[1].toLowerCase(); }
     try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
   }
@@ -187,6 +211,7 @@
         applySeason(btn.getAttribute('data-season'));
       }, false);
     }
+    // Copy email (with fallback)
     document.addEventListener('click', async function(e){
       var btn = e.target.closest && e.target.closest('button[data-copy]');
       if (!btn) return;
