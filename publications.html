@@ -205,6 +205,14 @@
   color: #3A6EA5 !important;
 }
 </style>
+
+<style>
+/* Ensure toolbar containers exist and are visible */
+.season-switch, .quick-actions { position: fixed; z-index: 9999; display: flex; gap: 6px; }
+.season-switch { right: 12px; bottom: 12px; }
+.quick-actions { right: 12px; top: 12px; }
+.season-switch button { cursor: pointer; }
+</style>
 </head>
 <body>
 <table summary="Table for page layout." id="tlayout">
@@ -224,14 +232,14 @@
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2411.13080">Distribution-free Measures of Association based on Optimal Transport </a> ("Accepted" at the <i> Indian Journal of Pure Applied Math </i>, special issue in honor of Prof. K. R. Parthasarathy). </li <ul <li><p><strong><i>Nabarun Deb</strong></i>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2307.16421.pdf">Wasserstein Mirror Gradient Flow as the Limit of the Sinkhorn Algorithm</a> ("Accepted" at the <i> Annals of Probability </i>). </li <ul <li><p><strong><i>Nabarun Deb</i></strong>, <i>Young-Heon Kim</i>, <i>Soumik Pal</i>, <i> Geoffrey Schiebinger</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2212.03944.pdf">LDP for Inhomogeneous U-Statistics</a> ("Accepted" at the <i>Annals of Applied Probability</i>). </li <ul <li><p><i>Sohom Bhattacharya</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2107.01718.pdf">Rates of Estimation of Optimal Transport Maps using Plug-in Estimators via Barycentric Projections</a> ("Accepted" at <i> Neural Information Processing Systems (NeurIPS) 2021<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>i>, <i>Bodhisattva Sen</i>.</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2107.01718.pdf">Rates of Estimation of Optimal Transport Maps using Plug-in Estimators via Barycentric Projections</a> ("Accepted" at <i> Neural Information Processing Systems (NeurIPS) 2021<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.15140.pdf">Exact Detection Thresholds for Chatterjee’s Correlation</a> ("Accepted" at <i> Bernoulli</i>). </li <ul <li><p><i>Arnab Auddy</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sagnik Nandy</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2104.01986.pdf">Pitman Efficiency Lower Bounds for Multivariate Distribution-Free Tests Based on Optimal Transport</a>. ("Accepted" at the <i>Journal of the Royal Statistical Society: Series B</i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Bhaswar B. Bhattacharya</i>, <i>Bodhisattva Sen</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.14804.pdf">Kernel Partial Correlation Coefficient -- a Measure of Conditional Dependence</a> ("Accepted" at <i> Journal of Machine Learning Research (JMLR) </i>). <a href="https://cran.r-project.org/web/packages/KPC/index.html" style="color:#FF0000;">R package (CRAN).</a> <br /></div><div class="pub-meta">Zhen Huang, Nabarun Deb , Bodhisattva Sen.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.05784.pdf">Detecting Structured Signals in Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). <br /></div><div class="pub-meta">Nabarun Deb , Rajarshi Mukherjee , Sumit Mukherjee , Ming Yuan .</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2005.00710.pdf">Fluctuations in Mean-Field Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). <br /></div><div class="pub-meta">Nabarun Deb , Sumit Mukherjee .</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1909.08733.pdf">Multivariate Rank-based Distribution-free Nonparametric Testing using Measure Transportation</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://github.com/NabarunD/MultiDistFree" style="color:#FF0000;">Associated R codes (GitHub).</a> <br /></div><div class="pub-meta">Nabarun Deb , Bodhisattva Sen .</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1810.07897.pdf">Two-component Mixture Model in the Presence of Covariates</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://cran.r-project.org/web/packages/NPMLEmix/index.html" style="color:#FF0000;">R package (CRAN).</a> <br /></div><div class="pub-meta">Nabarun Deb , Sujayam Saha , Adityanand Guntuboyina , Bodhisattva Sen .</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.14804.pdf">Kernel Partial Correlation Coefficient -- a Measure of Conditional Dependence</a> ("Accepted" at <i> Journal of Machine Learning Research (JMLR) </i>). <a href="https://cran.r-project.org/web/packages/KPC/index.html" style="color:#FF0000;">R package (CRAN).</a> </li <ul <li><p><i>Zhen Huang</i>, <strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2012.05784.pdf">Detecting Structured Signals in Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Rajarshi Mukherjee</i>, <i>Sumit Mukherjee</i>, <i>Ming Yuan</i>.</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2005.00710.pdf">Fluctuations in Mean-Field Ising Models</a> ("Accepted" at <i> Annals of Appplied Probability<i>). </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Sumit Mukherjee</i>.</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1909.08733.pdf">Multivariate Rank-based Distribution-free Nonparametric Testing using Measure Transportation</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://github.com/NabarunD/MultiDistFree" style="color:#FF0000;">Associated R codes (GitHub).</a> </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Bodhisattva Sen</i>.</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/1810.07897.pdf">Two-component Mixture Model in the Presence of Covariates</a> ("Accepted" at <i> J. Amer. Statist. Assoc. (JASA)</i>). <a href="https://cran.r-project.org/web/packages/NPMLEmix/index.html" style="color:#FF0000;">R package (CRAN).</a> </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Sujayam Saha</i>, <i></i>Adityanand Guntuboyina</i>, </i> <i>Bodhisattva Sen</i>.</div></li>
 </ul>
 <h2>Manuscripts under revision</h2>
 <ul class="publist flush">
@@ -245,7 +253,7 @@
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2507.00889">Phase Transition in Nonparametric Minimax Rates for Covariate Shifts on Approximate Manifolds </a> (Preprint). </li <ul <li><p><i>Yuyao Wang</i>, <strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/abs/2503.21152">Fluctuations in Random Field Ising models </a> (Preprint). </li <ul <li><p><i>Seunghyun Lee</i>, <strong><i>Nabarun Deb</i></strong>, <i>Sumit Mukherjee</i>.</div></li>
 <li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2401.08978.pdf">Trade-off Between Dependence and Complexity for Nonparametric Learning — an Empirical Process Approach </a> (Preprint). </li <ul <li><p><strong><i>Nabarun Deb</i></strong>, <i>Debarghya Mukherjee</i>.</div></li>
-<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2010.01768.pdf">Measuring Association on Topological Spaces Using Kernels and Geometric Graphs</a>. <br /></div><div class="pub-meta">Nabarun Deb , Promit Ghosal , Bodhisattva Sen .</div></li>
+<li class="pubitem"><div class="pub-title"><a href="https://arxiv.org/pdf/2010.01768.pdf">Measuring Association on Topological Spaces Using Kernels and Geometric Graphs</a>. </li <ul <li><p><strong>Nabarun Deb</strong>, <i>Promit Ghosal</i>, <i>Bodhisattva Sen</i>.</div></li>
 </ul>
 <h1>Selected Talks</h1>
   <ul>
@@ -361,5 +369,65 @@ Details on other talks I have given can be found in my <a href="CurrentCV.pdf">C
 })();
 </script>
 
+
+<script>
+// Robust seasonal switcher (publications): DOM-ready, overrides any earlier event wiring
+(function(){
+  function setPressed(mode){
+    var buttons = document.querySelectorAll('#season-switch button[data-season]');
+    for (var i=0; i<buttons.length; i++) {
+      var pressed = String(buttons[i].getAttribute('data-season') === mode);
+      buttons[i].setAttribute('aria-pressed', pressed);
+    }
+  }
+  function syncMetaTheme(){
+    try {
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+      var bg = getComputedStyle(document.body).backgroundColor;
+      meta.content = (bg || '#FAF7F0').trim();
+    } catch(e){}
+  }
+  function applySeason(mode){
+    var root = document.documentElement;
+    root.classList.remove('season-spring','season-summer','season-autumn','season-winter','mode-normal');
+    if (mode === 'normal') { root.classList.add('mode-normal'); }
+    else { root.classList.add('season-' + mode); }
+    try { localStorage.setItem('seasonMode', mode); } catch(e){}
+    setPressed(mode);
+    syncMetaTheme();
+  }
+
+  function getInitialMode(){
+    // ?season=spring|summer|autumn|winter|normal overrides once
+    var m = (''+window.location.search).match(/[?&]season=(spring|summer|autumn|winter|normal)/i);
+    if (m) {
+      try { localStorage.setItem('seasonMode', m[1].toLowerCase()); } catch(e){}
+      return m[1].toLowerCase();
+    }
+    try { return localStorage.getItem('seasonMode') || 'normal'; } catch(e){ return 'normal'; }
+  }
+
+  function init(){
+    var toolbar = document.getElementById('season-switch');
+    // Guard: only run if toolbar exists
+    if (!toolbar) return;
+    // Delegate clicks
+    toolbar.addEventListener('click', function(e){
+      var btn = e.target.closest && e.target.closest('button[data-season]');
+      if (!btn) return;
+      applySeason(btn.getAttribute('data-season'));
+    }, false);
+    // Apply initial
+    applySeason(getInitialMode());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 <script>if(window.parent==window){(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-41540427-2","auto",{"siteSpeedSampleRate":100});ga("send","pageview");}</script></HTML>
